@@ -1,12 +1,8 @@
-export default async function handler(req, res) {
-    // Dynamically set CSP based on environment or request headers
+export default async function handler(req, res) 
+{
     const dynamicCSP = `default-src 'self'; script-src 'self' 'unsafe-inline';`;
     res.setHeader('Content-Security-Policy', dynamicCSP);
-
     let randomNumber = Math.random();
-    res.setHeader('VERCEL-DYNAMIC-HEADER-RANDOM-NUMBER', randomNumber);
-
-
-    res.status(200).send('CSP header set dynamically');
-  }
-  
+    res.setHeader('JEF-DYNAMIC-HEADER-KEY', 'JEF-DYNAMIC-HEADER-VALUE-' + randomNumber);
+    return await fetch(req);  
+}
